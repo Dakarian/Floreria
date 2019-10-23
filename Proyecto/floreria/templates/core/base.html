@@ -15,16 +15,19 @@
         <nav>
             <ol>
                 <li>
-                    <a href=""> Home</a>
+                    <a href="{% url 'HOME' %}"> Home</a>
                 </li>
                 <li>
-                    <a href=""> Galeria de flores</a>
+                    <a href="{% url 'GALE' %}"> Galeria de flores</a>
                 </li>
                 <li>
-                    <a href=""> Quienes Somos</a>
+                    <a href="{% url 'QUIEN' %}"> Quienes Somos</a>
                 </li>
                 <li>
-                    <a href=""> Carrito de Compras</a>
+                    <a href="{% url 'SHOP' %}"> Carrito de Compras</a>
+                </li>
+                <li>
+                    <a href="{% url 'LOGIN' %}"> Login</a>
                 </li>
                 <li>
                     <a href=""> Logout</a>
