@@ -2,18 +2,20 @@
     {% block titulo %}
         Galeria de Flores - Florería Pétalos
     {% endblock titulo %}
-
+        <h2>Catálogo de flores</h2>
     {% load static %}
    
     {% block contenido %}
     {% for f in listaflores %}
-         <div>
+         <div class="flores">
             <h3>{{f.name}}</h3>
             <img src="{{f.foto.url}}">
             <p>{{f.descripcion}}</p>
+            <p>${{f.valor}}</p>
+            <p>Cantidad en stock: {{f.stock}}</p>
             <div>Añadir</div>
         </div>
-    {% endfor %}}
+    {% endfor %}
         
 
     {% endblock contenido %}
