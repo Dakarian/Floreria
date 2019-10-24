@@ -1,7 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ol, ul{
+    list-style: none;
+}
+
 header{
-    background-color: green;
-    color: lightblue;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
 }
 body{
-    background-color: lightgreen;
+    background-color: rgb(183, 247, 183);
+}
+
+nav {
+    background-color: rgb(89, 238, 225);
+    width: 100%;
+    overflow: auto;
+}
+
+nav li{
+    float: left;
+    list-style: none;
+    display: block;
+    background-color: rgb(89, 238, 225);
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 15px;
+}
+
+h2{
+    color: rgb(57, 104, 119);
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+section{
+    padding-top: 80px;
 }
