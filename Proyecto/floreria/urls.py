@@ -9,4 +9,8 @@ urlpatterns = [
     path('quienes_somos',quienes_somos,name='QUIEN'),
     path('login',login,name='LOGIN'),
     path('carrito',carrito,name='SHOP'),
+    path('agregar_carro/<id>/',anadir_carro,name='ANADIR_CARRO'),
+    path('vaciar_carrito',vaciar_carrito,name="VACIARCARRITO"),
+    path('eliminar_flor/<id>/',eliminar_flor,name='ELIMINAR'),
+
 ]
