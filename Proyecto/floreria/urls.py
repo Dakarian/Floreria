@@ -1,7 +1,7 @@
 #urls de la pagina
 from django.contrib import admin
 from django.urls import path,include
-from .views import home, galeria, quienes_somos,login,carrito
+from .views import *
 
 urlpatterns = [
     path('',home,name='HOME'),

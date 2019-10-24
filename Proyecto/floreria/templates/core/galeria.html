@@ -6,6 +6,15 @@
     {% load static %}
    
     {% block contenido %}
+    {% for f in listaflores %}
+         <div>
+            <h3>{{f.name}}</h3>
+            <img src="{{f.foto.url}}">
+            <p>{{f.descripcion}}</p>
+            <div>Añadir</div>
+        </div>
+    {% endfor %}}
+        
 
     {% endblock contenido %}
           
