@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Flores
 
 # Create your views here.
 
@@ -6,7 +7,8 @@ def home(request):
     return render(request,'core/home.html')
 
 def galeria(request):
-    return render(request,'core/galeria.html')
+    flowers = Flores.objects.all()  # select * from pelicula
+    return render(request, 'core/galeria.html', {'listaflores': flowers})
 
 def login(request):
     return render(request,'core/login.html')
