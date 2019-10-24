@@ -6,6 +6,29 @@
     {% load static %}
    
     {% block contenido %}
+        <h1>Carro de compras</h1>
+        <table border="1">
+            <tr>
+                <td>Titulo</td>
+                <td>Cantidad</td>
+                <td>Precio</td>
+            </tr>
+    {% for f in lista %}
+            <tr>
+                <td>{{f}}</td>
+                <td></td>
+                <td></td>
+            </tr>
+    {% endfor %}
+        </table>
+
+        <table>
+            <tr>
+                <td>
+                    <a href="{% url 'VACIARCARRITO' %}">Vaciar carrito</a>
+                </td>
+            </tr>
+        </table>
 
     {% endblock contenido %}
           

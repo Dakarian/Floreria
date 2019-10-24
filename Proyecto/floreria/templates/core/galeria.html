@@ -2,10 +2,11 @@
     {% block titulo %}
         Galeria de Flores - Florería Pétalos
     {% endblock titulo %}
-        <h2>Catálogo de flores</h2>
+
     {% load static %}
    
     {% block contenido %}
+        <h2>Catálogo de flores</h2>
     {% for f in listaflores %}
          <div class="flores">
             <h3>{{f.name}}</h3>
@@ -13,7 +14,12 @@
             <p>{{f.descripcion}}</p>
             <p>${{f.valor}}</p>
             <p>Cantidad en stock: {{f.stock}}</p>
-            <div>Añadir</div>
+            <div>
+                <a href="{% url 'ANADIR_CARRO' f.name %}">Agregar a Carro</a>
+            </div>
+            <div>
+                <a href="{% url 'ELIMINAR' f.name %}">Eliminar</a>
+            </div>
         </div>
     {% endfor %}
         
