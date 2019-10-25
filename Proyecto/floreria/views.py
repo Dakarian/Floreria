@@ -6,20 +6,24 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 # Create your views here.
-
+@login_required(login_url='/login')
 def home(request):
     return render(request,'core/home.html')
 
+@login_required(login_url='/login')
 def galeria(request):
     flowers = Flores.objects.all()  # select * from pelicula
     return render(request, 'core/galeria.html', {'listaflores': flowers})
 
 def login(request):
     return render(request,'core/login.html')
+    
 
+@login_required(login_url='/login')
 def quienes_somos(request):
     return render(request,'core/quienes_somos.html')
 
+@login_required(login_url='/login')
 def carrito(request):
     lista = request.session.get("carro", "")
     arr = lista.split(";")
@@ -75,3 +79,21 @@ def eliminar_flor(request, id):
 
     flr = Flores.objects.all()
     return render(request, 'core/galeria.html', {'listaflores': flr, 'msg': mensaje})
+
+def registro(request):
+    return render(request,'core/registro.html')
+
+def login_ingresar(request):
+    if request.POST:
+        u = request.POST.get("txtUsuario")
+        p = request.POST.get("txtPass")
+        usu = authenticate(request, username=u, password=p)
+        if usu is not None and usu.is_active:
+            auth_login(request, usu)
+            return render(request, 'core/home.html')
+    return render(request, 'core/login.html')
+
+@login_required(login_url='/login')
+def cerrar_sesion(request):
+    logout(request)
+    return HttpResponse("<script>alert('cerro sesion');window.location.href='/';</script>")
