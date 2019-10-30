@@ -16,3 +16,4 @@ def quienes_somos(request):
 
 def carrito(request):
     return render(request,'core/carrito.html')
+    # dasdssadasadasdas
