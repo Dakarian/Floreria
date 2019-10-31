@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{% static 'core/css/estilos_floreria.css' %}" type="text/css" rel="stylesheet">
+    
     <title>
     {% block titulo %}
     
@@ -29,6 +30,9 @@
                     <a href="{% url 'SHOP' %}"> Carrito de Compras</a>
                 </li>
                 <li>
+                    <a href="{% url 'AGREGAR' %}">Agregar Flores</a>
+                </li>
+                <li>
                     <a href="{% url 'LOGIN' %}"> Login</a>
                 </li>
                 <li>
@@ -41,6 +45,9 @@
         {% block contenido %}
         
         {% endblock contenido %}
-    </section>  
+    </section>
+{% block javascript %}
+{% endblock javascript %}
 </body>
+
 </html>

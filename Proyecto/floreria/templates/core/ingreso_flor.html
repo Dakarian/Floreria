@@ -1,0 +1,26 @@
+{% extends "core/base.html" %}
+
+{% block titulo %}
+    Nueva Flor - Florería Pétalos
+{% endblock titulo %}
+
+{% block contenido %}
+
+    <h2>Nueva Flor</h2>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+
+        <input type="reset" value="Limpiar">
+        <input type="submit" value="Guardar">
+        
+
+    </form>
+
+    {{msj}}
+
+
+{% endblock contenido %}

@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout, login as auth_login
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from .forms import FlorForm
 
 # Create your views here.
 @login_required(login_url='/login')
@@ -97,3 +98,28 @@ def login_ingresar(request):
 def cerrar_sesion(request):
     logout(request)
     return HttpResponse("<script>alert('cerro sesion');window.location.href='/';</script>")
+
+def ingreso_flor(request):
+    data = {
+        'form':FlorForm()
+    }
+    if request.method == 'POST':
+        formulario = FlorForm(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            data['msj'] = "Almacenado correctamente"
+
+    return render(request, 'core/ingreso_flor.html', data)
+    
+def modificar_flor(request, id):
+    flor = Flores.objects.get(name=id)
+    data = {
+        'form':FlorForm(instance=flor)
+    }
+    if request.method == 'POST':
+        formulario = FlorForm(data=request.POST, instance=flor, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            data['msj'] = "Modificado correctamente"
+            data['form'] = formulario
+    return render(request, 'core/modificar_flor.html', data)
