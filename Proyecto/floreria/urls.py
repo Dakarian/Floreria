@@ -15,5 +15,8 @@ urlpatterns = [
     path('registro',registro,name='REGISTRO'),
     path('login_ingresar',login_ingresar,name='LOGIN_INGRESAR'),
     path('logout',cerrar_sesion,name='LOGOUT'),
+    path('ingreso_flor',ingreso_flor,name='AGREGAR'),
+    path('modificar_flor/<id>/',modificar_flor,name='MODIFICA'),
 
 ]
+
