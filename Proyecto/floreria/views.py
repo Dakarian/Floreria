@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Flores
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout, login as auth_login
