@@ -57,3 +57,10 @@ img{
     width: 275px;
     height: 350px;
 }
+
+h5{
+    color: black;
+}
+h5~p{
+    color: black;
+}
