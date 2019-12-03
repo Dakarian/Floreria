@@ -37,15 +37,26 @@
                 <li>
                     <a href="{% url 'SHOP' %}"> Carrito de Compras</a>
                 </li>
+
+                {% if not user.is_authenticated %}
+                <li>
+                    <a href="{% url 'LOGIN' %}"> Iniciar Sesion</a>
+                </li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
                 <li>
                     <a href="{% url 'AGREGAR' %}">Agregar Flores</a>
                 </li>
+                {% endif %}
                 <li>
-                    <a href="{% url 'LOGIN' %}"> Login</a>
+                    <a href="#">Usuario: {{user.username}}</a>
                 </li>
                 <li>
-                    <a href="{% url 'LOGOUT' %}"> Logout</a>
+                    <a href="{% url 'LOGOUT' %}"> Cerrar Sesion</a>
                 </li>
+                {% endif %}
+
             </ol>
         </nav>
     </header>

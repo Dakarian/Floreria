@@ -1,0 +1,26 @@
+    {% extends "core/base.html" %}
+    {% block titulo %}
+        Registro de usuario - Florería Pétalos
+    {% endblock titulo %}
+
+    {% load static %}
+
+    {% block contenido %}
+    <div class="container">
+            <h2>Registro de usuario</h2>
+
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                <table>
+                    {{form.as_table}}
+                </table>
+
+                <div class="float-right">
+                    <input type="reset" value="Limpiar" class="btn btn-info">
+                    <input type="submit" value="Registrar" class="btn btn-success">
+                </div>
+               
+            </form>
+    </div>
+    {% endblock contenido %}

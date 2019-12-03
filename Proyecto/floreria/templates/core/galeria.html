@@ -14,15 +14,23 @@
             <p>{{f.descripcion}}</p>
             <p>${{f.valor}}</p>
             <p>Cantidad en stock: {{f.stock}}</p>
+            {%if f.stock >= 1 %}
+            <p>Estado: Disponible</p>
+            {% else %}
+            <p>Estado: No Disponible</p>
+            {% endif %}
+            
             <div>
                 <a href="{% url 'ANADIR_CARRO' f.name %}">Agregar a Carro</a>
             </div>
+            {% if user.is_superuser %}
             <div>
                 <a href="{% url 'ELIMINAR' f.name %}">Eliminar</a>
             </div>
             <div>
                 <a href="{% url 'MODIFICA' f.name %}">Modificar</a>
             </div>
+            {% endif %}
         </div>
     {% endfor %}
         
