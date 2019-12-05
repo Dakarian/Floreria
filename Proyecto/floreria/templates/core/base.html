@@ -34,16 +34,15 @@
                 <li>
                     <a href="{% url 'QUIEN' %}"> Quienes Somos</a>
                 </li>
-                <li>
-                    <a href="{% url 'SHOP' %}"> Carrito de Compras</a>
-                </li>
-
                 {% if not user.is_authenticated %}
                 <li>
                     <a href="{% url 'LOGIN' %}"> Iniciar Sesion</a>
                 </li>
                 {% endif %}
                 {% if user.is_authenticated %}
+                <li>
+                        <a href="{% url 'SHOP' %}"> Carrito de Compras</a>
+                </li>
                 {% if user.is_superuser %}
                 <li>
                     <a href="{% url 'AGREGAR' %}">Agregar Flores</a>
@@ -61,9 +60,11 @@
         </nav>
     </header>
     <section>
-        {% block contenido %}
+        <div class="container">
+                {% block contenido %}
         
-        {% endblock contenido %}
+                {% endblock contenido %}
+        </div>
     </section>
 {% block javascript %}
 {% endblock javascript %}
