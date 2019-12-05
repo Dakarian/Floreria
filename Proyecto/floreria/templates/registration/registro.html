@@ -1,4 +1,5 @@
     {% extends "core/base.html" %}
+    {% load crispy_forms_tags %}
     {% block titulo %}
         Registro de usuario - Florería Pétalos
     {% endblock titulo %}
@@ -12,8 +13,8 @@
             <form action="" method="POST">
                 {% csrf_token %}
 
-                <table>
-                    {{form.as_table}}
+                <table class="table">
+                    {{ form | crispy }}
                 </table>
 
                 <div class="float-right">

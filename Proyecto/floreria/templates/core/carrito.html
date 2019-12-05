@@ -7,7 +7,7 @@
    
     {% block contenido %}
         <h1>Carro de compras</h1>
-        <table border="1">
+        <table class="table" border="1">
             <tr>
                 <td>Titulo</td>
                 <td>Cantidad</td>
@@ -20,7 +20,7 @@
     {% endfor %}
         </table>
 
-        <table>
+        <table class="table table-striped">
             <tr>
                 <td>
                     <a href="{% url 'VACIARCARRITO' %}">Vaciar carrito</a>

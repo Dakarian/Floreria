@@ -15,14 +15,20 @@
             <p>${{f.valor}}</p>
             <p>Cantidad en stock: {{f.stock}}</p>
             {%if f.stock >= 1 %}
-            <p>Estado: Disponible</p>
+            <p style="color:rgb(9, 77, 6)">Estado: Disponible</p>
             {% else %}
-            <p>Estado: No Disponible</p>
+            <p style="color: red">Estado: No Disponible</p>
             {% endif %}
-            
+            {% if not user.is_authenticated %}
+            <p>Para agregar objetos al carro, debe <a href="{% url 'LOGIN' %}">Iniciar sesión</a></p>
+            {% endif %}
+
+            {% if user.is_authenticated %}
             <div>
-                <a href="{% url 'ANADIR_CARRO' f.name %}">Agregar a Carro</a>
+                    <a href="{% url 'ANADIR_CARRO' f.name %}">Agregar a Carro</a>
             </div>
+            {% endif %}
+
             {% if user.is_superuser %}
             <div>
                 <a href="{% url 'ELIMINAR' f.name %}">Eliminar</a>
