@@ -9,13 +9,17 @@
         <h1>Carro de compras</h1>
         <table class="table" border="1">
             <tr>
-                <td>Titulo</td>
+                <td>Nombre</td>
                 <td>Cantidad</td>
                 <td>Precio</td>
+                <td>Total</td>
             </tr>
     {% for f in lista %}
             <tr>
-                <td>{{f.name}}</td>
+                <td>{{f.nombre}}</td>
+                <td>{{f.cantidad}}</td>
+                <td>{{f.precio}}</td>
+                <td>{{f.total}}</td>
             </tr>
     {% endfor %}
         </table>
@@ -24,6 +28,13 @@
             <tr>
                 <td>
                     <a href="{% url 'VACIARCARRITO' %}">Vaciar carrito</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">Total</td>  
+                <td>{{total}}</td>  
+                <td>
+                    <input type="button" value="Grabar Carro">
                 </td>
             </tr>
         </table>

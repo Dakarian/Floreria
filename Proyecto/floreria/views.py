@@ -4,13 +4,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout, login as auth_login
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponse
-from .forms import FlorForm, CustomUserForm
+from .forms import FlorForm, CustomUserForm, elemento
 
 # Create your views here.
 def home(request):
     return render(request,'core/home.html')
 
-@login_required(login_url='/login')
 def galeria(request):
     flowers = Flores.objects.all()  # select * from pelicula
     return render(request, 'core/galeria.html', {'listaflores': flowers})
@@ -24,46 +23,36 @@ def quienes_somos(request):
 
 @login_required(login_url='/login')
 def carrito(request):
-    lista = request.session.get("carro", "")
-    arr = lista.split(";")
-    return render(request, "core/carrito.html", {'lista': arr})
+    lista=request.session["carritox"]
+    suma=0
+    for item in lista:
+        suma=suma+int(item["total"])           
+    return render(request,'core/carrito.html',{'lista':lista,'total':suma})
 
 def anadir_carro(request, id):
-    #recuperar valor de la pelicula
-    #clausula "select * from Pelicula where name like (%id%)"
-    flowers=Flores.objects.filter(name__contains=id)
-    valor=Flores.valor
-    # recuperar una sesion llamada 'carro', de no existir no deja nada ''
-    sesion = request.session.get("carro", "")
-    # buscar la pelicula en el interior del listado
-    arr = sesion.split(";")
-    # almacena los registros limpios
-    arr2 = ''
-    sw = 0
-    cant = 1
-    for f in arr:
-        flr = f.split(":")
-        if flr[0] == id:
-            cant = int(flr[1])+1
-            sw = 1
-            arr2 = arr2+str(flr[0])+":"+str(cant)+":"+str(valor)+";"
-        elif not flr[0]=="":
-            cant=flr[1]
-            arr2 = arr2+str(flr[0])+":"+str(cant)+str(valor)+";"
-    # pregunta si la pelicula existe o no
-    if sw == 0:
-        arr2 = arr2+str(id)+":"+str(1)+str(valor)+";"
-
-    # en la session 'carro' almaceno lo que trae la sesion mas el titulo de la pelicula
-    request.session["carro"] = arr2
-    # recuperar el listado de peliculas
-    flowers = Flores.objects.all()
-    # renderizar la pagina, pasandole el listado de peliculas
-    msg = 'agrego flor'
-    return render(request, 'core/galeria.html', {'listaflores': flowers, 'msg': msg})
+    f=Flores.objects.get(name=id)
+    lista=request.session["carritox"]
+    el=elemento(f.name,f.valor,1)
+    sw=0
+    suma=0
+    clon=[]
+    for item in lista:        
+        cantidad=item["cantidad"]
+        if item["nombre"]==f.name:
+            sw=1
+            cantidad=int(cantidad)+1
+        ne=elemento(item["nombre"],item["precio"],cantidad)
+        suma=suma+int(ne.total())
+        clon.append(ne.toString())
+    if sw==0:
+        clon.append(el.toString())
+    lista=clon    
+    request.session["carritox"]=lista
+    flowers=Flores.objects.all()    
+    return render(request,'core/galeria.html',{'listaflores':flowers,'total':suma})
 
 def vaciar_carrito(request):
-    request.session["carro"] = ""
+    request.session["carritox"] = ""
     lista = request.session.get("carro", "")
     return render(request, "core/carrito.html", {'lista': lista})
 
@@ -103,6 +92,8 @@ def login_ingresar(request):
         u = request.POST.get("txtUsuario")
         p = request.POST.get("txtPass")
         usu = authenticate(request, username=u, password=p)
+        request.session["carrito"] = []        
+        request.session["carritox"] = []
         if usu is not None and usu.is_active:
             auth_login(request, usu)
             return render(request, 'core/home.html')
