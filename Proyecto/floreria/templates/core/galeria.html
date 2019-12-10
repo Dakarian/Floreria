@@ -1,45 +1,121 @@
-    {% extends "core/base.html" %}
-    {% block titulo %}
-        Galeria de Flores - Florería Pétalos
-    {% endblock titulo %}
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <link href="{% static 'core/css/estilos_floreria.css' %}" type="text/css" rel="stylesheet">
 
-    {% load static %}
-   
-    {% block contenido %}
-        <h2>Catálogo de flores</h2>
-    {% for f in listaflores %}
-         <div class="flores">
-            <h3>{{f.name}}</h3>
-            <img class="galeriaimg" src="{{f.foto.url}}">
-            <p>{{f.descripcion}}</p>
-            <p>${{f.valor}}</p>
-            <p>Cantidad en stock: {{f.stock}}</p>
-            {%if f.stock >= 1 %}
-            <p style="color:rgb(9, 77, 6)">Estado: Disponible</p>
-            {% else %}
-            <p style="color: red">Estado: No Disponible</p>
-            {% endif %}
-            {% if not user.is_authenticated %}
-            <p>Para agregar objetos al carro, debe <a href="{% url 'LOGIN' %}">Iniciar sesión</a></p>
-            {% endif %}
+    <title>
+        Galería de flores - Pétalos
+    </title>
+</head>
 
-            {% if user.is_authenticated %}
-            <div>
+<body>
+    <header>
+        <nav>
+            <ol>
+                <li>
+                    <a href="{% url 'HOME' %}"> Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'GALE' %}"> Galeria de flores</a>
+                </li>
+                <li>
+                    <a href="{% url 'QUIEN' %}"> Quienes Somos</a>
+                </li>
+                {% if not user.is_authenticated %}
+                <li>
+                    <a href="{% url 'LOGIN' %}"> Iniciar Sesion</a>
+                </li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'SHOP' %}"> Carrito de Compras</a>
+                </li>
+                {% if user.is_superuser %}
+                <li>
+                    <a href="{% url 'AGREGAR' %}">Agregar Flores</a>
+                </li>
+                <li>
+                    <a href="{% url 'ADMIN' %}">Panel de control</a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="#">Usuario: {{user.username}}</a>
+                </li>
+                <li>
+                    <a href="{% url 'LOGOUT' %}"> Cerrar Sesion</a>
+                </li>
+                {% endif %}
+
+            </ol>
+        </nav>
+    </header>
+    <section>
+        <div class="container">
+            {% for f in listaflores %}
+
+            <div class="flores">
+                <h3>{{f.name}}</h3>
+                <img class="galeriaimg" src="{{f.foto.url}}">
+                <p>{{f.descripcion}}</p>
+                <p>${{f.valor}}</p>
+                <p>Cantidad en stock: {{f.stock}}</p>
+                {%if f.stock >= 1 %}
+                <p style="color:rgb(9, 77, 6)">Estado: Disponible</p>
+                {% else %}
+                <p style="color: red">Estado: No Disponible</p>
+                {% endif %}
+                {% if not user.is_authenticated %}
+                <p>Para agregar objetos al carro, debe <a href="{% url 'LOGIN' %}">Iniciar sesión</a></p>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                <div>
                     <a href="{% url 'ANADIR_CARRO' f.name %}">Agregar a Carro</a>
-            </div>
-            {% endif %}
+                </div>
+                {% endif %}
 
-            {% if user.is_superuser %}
-            <div>
-                <a href="{% url 'ELIMINAR' f.name %}">Eliminar</a>
+                {% if user.is_superuser %}
+                <div>
+                    <a href="{% url 'ELIMINAR' f.name %}">Eliminar</a>
+                </div>
+                <div>
+                    <a href="{% url 'MODIFICA' f.name %}">Modificar</a>
+                </div>
+                {% endif %}
             </div>
-            <div>
-                <a href="{% url 'MODIFICA' f.name %}">Modificar</a>
-            </div>
-            {% endif %}
+            {% endfor %}
         </div>
-    {% endfor %}
-        
+    </section>
+    <div class="espaciado"></div>
+    <footer>
+        <div class="card text-white bg-dark">
+            <div class="footer">
+                <div class="card bg-light mb-3 text-white bg-dark " style="max-width: 18rem ;">
+                    <h5 class="card-header">Contactenos</h5>
+                    <div class="card-body">
+                        <p class="card-text"><img src="{% static 'img/wsp.jpg' %} " width="30" height="30"
+                                class="d-inline-block align-top" alt=""> +56 9 6513 3791</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted">Todos los derechos reservados.</div>
+        </div>
+    </footer>
+</body>
 
-    {% endblock contenido %}
-          
+</html>

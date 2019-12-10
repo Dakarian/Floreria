@@ -3,6 +3,16 @@
     padding: 0;
 }
 
+.container{
+    height: 600px;
+    width: 1300px;
+    max-width: 100%;
+}
+
+div.espaciado{
+margin-bottom: 50%;
+}
+
 ol, ul{
     list-style: none;
 }
@@ -89,4 +99,9 @@ h7~p{
     opacity: 65%;
     color: black;
     font-size: 54px;
+}
+footer{
+    padding-top: 10%;
+    bottom: 100%;
+    top: auto;
 }

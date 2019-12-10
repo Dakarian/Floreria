@@ -83,7 +83,8 @@ def registro(request):
             #autenticar al usuario y redirigirlo al inicio
             username = formulario.cleaned_data['username']
             password = formulario.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
+            user = authenticate(username=username, password=password)      
+            request.session["carritox"] = []
             auth_login(request, user)
             return redirect(to='HOME')
 
@@ -93,8 +94,7 @@ def login_ingresar(request):
     if request.POST:
         u = request.POST.get("txtUsuario")
         p = request.POST.get("txtPass")
-        usu = authenticate(request, username=u, password=p)
-        request.session["carrito"] = []        
+        usu = authenticate(request, username=u, password=p)        
         request.session["carritox"] = []
         if usu is not None and usu.is_active:
             auth_login(request, usu)
