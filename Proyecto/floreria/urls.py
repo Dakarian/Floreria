@@ -17,6 +17,7 @@ urlpatterns = [
     path('logout',cerrar_sesion,name='LOGOUT'),
     path('ingreso_flor',ingreso_flor,name='AGREGAR'),
     path('modificar_flor/<id>/',modificar_flor,name='MODIFICA'),
+    path('admin',adm,name='ADMIN'),
 
 ]
 

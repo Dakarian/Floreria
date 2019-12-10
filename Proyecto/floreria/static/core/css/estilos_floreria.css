@@ -80,11 +80,13 @@ h5~p{
 
 h7{
     background-color: rgb(195, 203, 248);
-    opacity: 70%;
+    opacity: 65%;
     color: black;
     font-size: 54px;
 }
-h7 p{
+h7~p{
     background-color: rgb(195, 203, 248);
+    opacity: 65%;
     color: black;
+    font-size: 54px;
 }
