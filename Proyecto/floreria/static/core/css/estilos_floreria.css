@@ -90,3 +90,8 @@ h7~p{
     color: black;
     font-size: 54px;
 }
+footer{
+    padding-top: 10%;
+    bottom: 100%;
+    top: auto;
+}
