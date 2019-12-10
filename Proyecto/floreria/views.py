@@ -17,6 +17,8 @@ def galeria(request):
 def login(request):
     return render(request,'registration/login.html')
     
+def adm(request):
+    return render(request,'/admin')
 
 def quienes_somos(request):
     return render(request,'core/quienes_somos.html')
