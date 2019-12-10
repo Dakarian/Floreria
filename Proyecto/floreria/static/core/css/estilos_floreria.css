@@ -13,20 +13,24 @@ header{
     z-index: 100;
 }
 body{
-    background-color: rgb(167, 248, 167);
+    background-color: rgb(190, 236, 83);
 }
 
 nav {
-    background-color: rgb(89, 238, 225);
+    background-color: rgb(152, 136, 240);
     width: 100%;
     overflow: auto;
+}
+
+nav a{
+    color: aliceblue;
 }
 
 nav li{
     float: left;
     list-style: none;
     display: block;
-    background-color: rgb(89, 238, 225);
+    background-color: rgb(152, 136, 240);
     font-family: Arial, Helvetica, sans-serif;
     padding: 15px;
 }
@@ -40,15 +44,20 @@ section{
     padding-top: 80px;
 }
 
-img{
+.galeriaimg{
     width: 200px;
     height: 150px;
+}
+
+.homeimg{
+    width: auto;
+    height: auto;
 }
 
 .flores{
     padding: 20px;
     margin-left: 1%;
-    background-color: rgb(240, 240, 106);
+    background-color: rgba(240, 240, 106, 0.966);
     float: left;
     border-radius: 2em;
     text-align: center;
@@ -61,5 +70,21 @@ h5{
     color: black;
 }
 h5~p{
+    color: black;
+}
+
+.carousel-caption{
+    top: 0;
+    bottom: auto;
+}
+
+h7{
+    background-color: rgb(195, 203, 248);
+    opacity: 70%;
+    color: black;
+    font-size: 54px;
+}
+h7 p{
+    background-color: rgb(195, 203, 248);
     color: black;
 }
