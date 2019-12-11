@@ -85,6 +85,7 @@ def registro(request):
             password = formulario.cleaned_data['password1']
             user = authenticate(username=username, password=password)      
             request.session["carritox"] = []
+            request.session["carrito"] = []
             auth_login(request, user)
             return redirect(to='HOME')
 
@@ -96,6 +97,7 @@ def login_ingresar(request):
         p = request.POST.get("txtPass")
         usu = authenticate(request, username=u, password=p)        
         request.session["carritox"] = []
+        request.session["carrito"] = []
         if usu is not None and usu.is_active:
             auth_login(request, usu)
             return render(request, 'core/home.html')
