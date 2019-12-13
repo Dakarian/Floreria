@@ -6,6 +6,9 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponse
 from .forms import FlorForm, CustomUserForm, elemento
 
+from rest_framework import viewsets
+from .serializers import FloresSerializer
+
 # Create your views here.
 def home(request):
     return render(request,'core/home.html')
@@ -135,3 +138,7 @@ def modificar_flor(request, id):
             data['msj'] = "Modificado correctamente"
         data['form'] = formulario
     return render(request, 'core/modificar_flor.html', data)
+
+class FloresViewSet(viewsets.ModelViewSet):
+    queryset = Flores.objects.all()
+    serializer_class = FloresSerializer

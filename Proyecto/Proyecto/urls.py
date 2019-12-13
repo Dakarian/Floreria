@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('floreria.urls')),
     path('accounts/',include('django.contrib.auth.urls')),
+    path('oauth/', include('social_django.urls', namespace='social'))
 ]
 
 if settings.DEBUG:
