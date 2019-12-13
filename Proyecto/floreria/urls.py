@@ -2,6 +2,10 @@
 from django.contrib import admin
 from django.urls import path,include
 from .views import *
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('flores', FloresViewSet)
 
 urlpatterns = [
     path('',home,name='HOME'),
@@ -18,6 +22,7 @@ urlpatterns = [
     path('ingreso_flor',ingreso_flor,name='AGREGAR'),
     path('modificar_flor/<id>/',modificar_flor,name='MODIFICA'),
     path('admin',adm,name='ADMIN'),
+    path('api/',include(router.urls)),
 
 ]
 
