@@ -28,6 +28,29 @@
 
         {% endblock titulo %}
     </title>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js"></script>
+
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyD9xJ3mf-y0ZffL89-trxEYc7iY1xihQzQ",
+            authDomain: "petalosfloreria8.firebaseapp.com",
+            databaseURL: "https://petalosfloreria8.firebaseio.com",
+            projectId: "petalosfloreria8",
+            storageBucket: "petalosfloreria8.appspot.com",
+            messagingSenderId: "1042089706050",
+            appId: "1:1042089706050:web:6e80443f44e4ceeb45a3db"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
 </head>
 
 <body>
