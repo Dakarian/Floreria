@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'social_django',
     'pwa',
+    'fcm_django',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -142,3 +143,16 @@ AUTHENTICATION_BACKENDS = (
 )
 
 PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'serviceworker.js')
+
+FCM_DJANGO_SETTINGS = {
+        "APP_VERBOSE_NAME": "Petalos",
+         # default: _('FCM Django')
+        "FCM_SERVER_KEY": "AIzaSyCa15wmnJ6thDGRSHzwFHebmehD_0Do1-E",
+         # true if you want to have only one active device per registered user at a time
+         # default: False
+        "ONE_DEVICE_PER_USER": False,
+         # devices to which notifications cannot be sent,
+         # are deleted upon receiving error response from FCM
+         # default: False
+        "DELETE_INACTIVE_DEVICES": True,
+}
