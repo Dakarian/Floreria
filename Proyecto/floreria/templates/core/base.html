@@ -32,23 +32,64 @@
     <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js"></script>
 
-
     <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
+  https://firebase.google.com/docs/web/setup#available-libraries -->
 
     <script>
         // Your web app's Firebase configuration
         var firebaseConfig = {
-            apiKey: "AIzaSyD9xJ3mf-y0ZffL89-trxEYc7iY1xihQzQ",
-            authDomain: "petalosfloreria8.firebaseapp.com",
-            databaseURL: "https://petalosfloreria8.firebaseio.com",
-            projectId: "petalosfloreria8",
-            storageBucket: "petalosfloreria8.appspot.com",
-            messagingSenderId: "1042089706050",
-            appId: "1:1042089706050:web:6e80443f44e4ceeb45a3db"
+            apiKey: "AIzaSyCa15wmnJ6thDGRSHzwFHebmehD_0Do1-E",
+            authDomain: "petalosfloreria0.firebaseapp.com",
+            databaseURL: "https://petalosfloreria0.firebaseio.com",
+            projectId: "petalosfloreria0",
+            storageBucket: "petalosfloreria0.appspot.com",
+            messagingSenderId: "890461962388",
+            appId: "1:890461962388:web:b9ee44c096ae0fae83b481"
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+
+        let messaging = firebase.messaging();
+
+        //registrar serviceworker
+
+        navigator.serviceWorker
+            .register('./serviceworker.js')
+            .then(function (register) {
+
+                messaging.useServiceWorker(register);
+
+                //solicitar permiso
+
+                messaging.requestPermission()
+                    .then(function () {
+                        console.log("El usuario ha aceptado recibir notificaciones")
+
+                        return messaging.getToken();
+                    })
+                    .then(function(token){
+                        console.log(token)
+                    })
+                    .catch(function (e) {
+                        console.log("El usuario no ha aceptado")
+                    })
+            })
+
+
+        //programar recepcion notificaciones push
+
+        messaging.onMessage(function (payload) {
+
+            let title = 'titulo de la notificacion';
+
+            let options = {
+                body: 'este es el mensaje',
+                icon: '/static/core/img/logo.jpg'
+            }
+
+            let mensaje = new Notification(title, options);
+        });
+
     </script>
 
 </head>

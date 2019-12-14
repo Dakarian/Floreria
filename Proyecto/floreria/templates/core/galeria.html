@@ -4,6 +4,7 @@
 {% progressive_web_app_meta %}
 
 {% load static %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,6 +25,65 @@
     <title>
         Galería de flores - Pétalos
     </title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase-messaging.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+  https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCa15wmnJ6thDGRSHzwFHebmehD_0Do1-E",
+            authDomain: "petalosfloreria0.firebaseapp.com",
+            databaseURL: "https://petalosfloreria0.firebaseio.com",
+            projectId: "petalosfloreria0",
+            storageBucket: "petalosfloreria0.appspot.com",
+            messagingSenderId: "890461962388",
+            appId: "1:890461962388:web:b9ee44c096ae0fae83b481"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        let messaging = firebase.messaging();
+
+        //registrar serviceworker
+
+        navigator.serviceWorker
+            .register('./serviceworker.js')
+            .then(function (register) {
+
+                messaging.useServiceWorker(register);
+
+                //solicitar permiso
+
+                messaging.requestPermission()
+                    .then(function () {
+                        console.log("El usuario ha aceptado recibir notificaciones")
+                    })
+                    .catch(function (e) {
+                        console.log("El usuario no ha aceptado")
+                    })
+            })
+
+
+        //programar recepcion notificaciones push
+
+        messaging.onMessage(function (payload) {
+
+            let title = 'titulo de la notificacion';
+
+            let options = {
+                body: 'este es el mensaje',
+                icon: '/static/core/img/logo.jpg'
+            }
+
+            let mensaje = new Notification(title, options);
+        })
+
+    </script>
 </head>
 
 <body>
@@ -79,6 +139,11 @@
                 <p>Cantidad en stock: {{f.stock}}</p>
                 {%if f.stock >= 1 %}
                 <p style="color:rgb(9, 77, 6)">Estado: Disponible</p>
+                {% if user.is_authenticated %}
+                <div>
+                    <a href="{% url 'ANADIR_CARRO' f.name %}">Agregar a Carro</a>
+                </div>
+                {% endif %}
                 {% else %}
                 <p style="color: red">Estado: No Disponible</p>
                 {% endif %}
@@ -86,11 +151,7 @@
                 <p>Para agregar objetos al carro, debe <a href="{% url 'LOGIN' %}">Iniciar sesión</a></p>
                 {% endif %}
 
-                {% if user.is_authenticated %}
-                <div>
-                    <a href="{% url 'ANADIR_CARRO' f.name %}">Agregar a Carro</a>
-                </div>
-                {% endif %}
+
 
                 {% if user.is_superuser %}
                 <div>
