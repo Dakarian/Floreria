@@ -21,8 +21,9 @@ urlpatterns = [
     path('logout',cerrar_sesion,name='LOGOUT'),
     path('ingreso_flor',ingreso_flor,name='AGREGAR'),
     path('modificar_flor/<id>/',modificar_flor,name='MODIFICA'),
-    path('admin',adm,name='ADMIN'),
+    path('admin/',adm,name='ADMIN'),
     path('api/',include(router.urls)),
+    path('guardar-token/', guardar_token, name='guardar_token'),
 
 ]
 
