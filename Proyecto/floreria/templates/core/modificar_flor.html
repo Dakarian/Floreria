@@ -1,24 +1,24 @@
 {% extends "core/base.html" %}
 {% load crispy_forms_tags %}
 {% block titulo %}
-    Modificar Flor - Florería Pétalos
+Modificar Flor - Florería Pétalos
 {% endblock titulo %}
 
 {% block contenido %}
 
-    <h2>Modificar Flor</h2>
+<h2>Modificar Flor</h2>
 
-    <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        
-        {{ form | crispy}}
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{ form | crispy}}
     <div class="float-right">
         <input type="reset" value="Limpiar" class="btn btn-info">
         <input type="submit" value="Modificar" class="btn btn-success">
     </div>
 
-    </form>
+</form>
 
-    {{msj}}
+{{msj}}
 
 {% endblock contenido %}

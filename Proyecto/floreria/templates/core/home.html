@@ -1,52 +1,51 @@
-    {% extends "core/base.html" %}
+{% extends "core/base.html" %}
 
-    {% block titulo %}
-        Main Principal - Floreria Pétalos
-    {% endblock titulo %}
+{% block titulo %}
+Main Principal - Floreria Pétalos
+{% endblock titulo %}
 
-    {% load static %}    
+{% load static %}
 
-    {% block contenido %}
+{% block contenido %}
 
-    <div class="bd-example">
-        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-          </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item active" data-interval="5000">
-              <img class="homeimg" src="{% static 'img/home1.jpg' %}" class="d-block w-100" alt="...">
-              <div class="carousel-caption">
-                <h7>Bienvenidos a Pétalos</h7>
-                <p>Una florería en crecimiento</p>
-              </div>
-            </div>
-            <div class="carousel-item" data-interval="5000">
-              <img class="homeimg" src="{% static 'img/home2.jpg' %}" class="d-block w-100" alt="...">
-              <div class="carousel-caption">
-                <h7>¡Visita nuestra galería!</h7>
-                <p>Cada semana actualizamos nuestro catálogo</p>
-              </div>
-            </div>
-            <div class="carousel-item" data-interval="5000">
-              <img class="homeimg" src="{% static 'img/home3.jpg' %}" class="d-block w-100" alt="...">
-              <div class="carousel-caption">
-                <h7>¡Regístrate!</h7>
-                <p>¡Para acceder a todas nuestras operaciones debes tener tu cuenta!</p>
-              </div>
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+<div class="bd-example">
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-interval="5000">
+        <img class="homeimg" src="{% static 'img/home1.jpg' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption">
+          <h7>Bienvenidos a Pétalos</h7>
+          <p>Una florería en crecimiento</p>
         </div>
+      </div>
+      <div class="carousel-item" data-interval="5000">
+        <img class="homeimg" src="{% static 'img/home2.jpg' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption">
+          <h7>¡Visita nuestra galería!</h7>
+          <p>Cada semana actualizamos nuestro catálogo</p>
+        </div>
+      </div>
+      <div class="carousel-item" data-interval="5000">
+        <img class="homeimg" src="{% static 'img/home3.jpg' %}" class="d-block w-100" alt="...">
+        <div class="carousel-caption">
+          <h7>¡Regístrate!</h7>
+          <p>¡Para acceder a todas nuestras operaciones debes tener tu cuenta!</p>
+        </div>
+      </div>
     </div>
-    {% endblock contenido %}
-       
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+{% endblock contenido %}

@@ -1,27 +1,27 @@
-    {% extends "core/base.html" %}
-    {% load crispy_forms_tags %}
-    {% block titulo %}
-        Registro de usuario - Florería Pétalos
-    {% endblock titulo %}
+{% extends "core/base.html" %}
+{% load crispy_forms_tags %}
+{% block titulo %}
+Registro de usuario - Florería Pétalos
+{% endblock titulo %}
 
-    {% load static %}
+{% load static %}
 
-    {% block contenido %}
-    <div class="container">
-            <h2>Registro de usuario</h2>
+{% block contenido %}
+<div class="container">
+    <h2>Registro de usuario</h2>
 
-            <form action="" method="POST">
-                {% csrf_token %}
+    <form action="" method="POST">
+        {% csrf_token %}
 
-                <table class="table">
-                    {{ form | crispy }}
-                </table>
+        <table class="table">
+            {{ form | crispy }}
+        </table>
 
-                <div class="float-right">
-                    <input type="reset" value="Limpiar" class="btn btn-info">
-                    <input type="submit" value="Registrar" class="btn btn-success">
-                </div>
-               
-            </form>
-    </div>
-    {% endblock contenido %}
+        <div class="float-right">
+            <input type="reset" value="Limpiar" class="btn btn-info">
+            <input type="submit" value="Registrar" class="btn btn-success">
+        </div>
+
+    </form>
+</div>
+{% endblock contenido %}

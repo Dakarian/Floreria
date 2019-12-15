@@ -3,25 +3,25 @@
 {% load crispy_forms_tags %}
 
 {% block titulo %}
-    Nueva Flor - Florería Pétalos
+Nueva Flor - Florería Pétalos
 {% endblock titulo %}
 
 {% block contenido %}
 
-    <h2>Nueva Flor</h2>
+<h2>Nueva Flor</h2>
 
-    <form action="" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        
-            {{form | crispy}}
-        <div class="float-right">
-            <input type="reset" value="Limpiar" class="btn btn-info">
-            <input type="submit" value="Guardar" class="btn btn-success">
-        </div> 
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
 
-    </form>
+    {{form | crispy}}
+    <div class="float-right">
+        <input type="reset" value="Limpiar" class="btn btn-info">
+        <input type="submit" value="Guardar" class="btn btn-success">
+    </div>
 
-    {{msj}}
+</form>
+
+{{msj}}
 
 
 {% endblock contenido %}
